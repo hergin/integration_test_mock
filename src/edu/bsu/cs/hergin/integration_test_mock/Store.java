@@ -34,4 +34,38 @@ public class Store {
 		}
 		return result;
 	}
+
+	public Item getTheMostExpensiveProduct() {
+		Item result = null;
+		if (items.size() > 0) {
+			result = items.get(0);
+		}
+		for (Item item : items) {
+			if (itemPriceService.getPrice(item) > itemPriceService.getPrice(result)) {
+				result = item;
+			}
+		}
+		return result;
+	}
+
+	public Item getTheCheapestProduct() {
+		Item result = null;
+		if (items.size() > 0) {
+			result = items.get(0);
+		}
+		for (Item item : items) {
+			if (itemPriceService.getPrice(item) < itemPriceService.getPrice(result)) {
+				result = item;
+			}
+		}
+		return result;
+	}
+
+	public List<Double> getAllPrices() {
+		List<Double> result = new ArrayList<Double>();
+		for (Item item : items) {
+			result.add(itemPriceService.getPrice(item));
+		}
+		return result;
+	}
 }
